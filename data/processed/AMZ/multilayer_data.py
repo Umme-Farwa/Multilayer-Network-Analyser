@@ -24,7 +24,6 @@ print(f"Creating {num_layers} layers...")
 for i in range(num_layers):
     start_idx = i * nodes_per_layer
     end_idx = (i + 1) * nodes_per_layer if i != num_layers - 1 else n_nodes
-    
     layer_nodes = all_nodes[start_idx:end_idx]
     for node in layer_nodes:
         node_to_layer[node] = i
@@ -52,3 +51,16 @@ for f in layer_files.values():
 
 print(f"SUCCESS! Data 10 layers mein divide ho gaya hai.")
 print(f"Check folder: {output_dir}")
+
+
+
+'''print("\n--- Output Summary ---")
+for i in range(num_layers):
+    # Check karein har file mein kitni lines (edges) hain
+    with open(os.path.join(output_dir, f"layer_{i}.txt"), 'r') as f:
+        lines = len(f.readlines())
+        print(f"Layer {i} mein total {lines} edges hain.")
+
+with open(os.path.join(output_dir, "inter_layer_edges.txt"), 'r') as f:
+    inter_lines = len(f.readlines())
+    print(f"Inter-layer (cross) total {inter_lines} edges hain.")'''
