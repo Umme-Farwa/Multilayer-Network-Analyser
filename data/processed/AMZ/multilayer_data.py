@@ -20,7 +20,7 @@ node_to_layer = {}
 
 print(f"Creating {num_layers} layers...")
 
-# 1. Nodes ko Layers assign karein
+# 1.Assigning layers to nodes
 for i in range(num_layers):
     start_idx = i * nodes_per_layer
     end_idx = (i + 1) * nodes_per_layer if i != num_layers - 1 else n_nodes
@@ -28,7 +28,7 @@ for i in range(num_layers):
     for node in layer_nodes:
         node_to_layer[node] = i
 
-# 2. Edges ko Intra-layer aur Inter-layer mein divide karein
+# 2.Dividing edges into layers (Intra and Inter)
 layer_files = {i: open(os.path.join(output_dir, f"layer_{i}.txt"), 'w') for i in range(num_layers)}
 inter_layer_file = open(os.path.join(output_dir, "inter_layer_edges.txt"), 'w')
 
@@ -44,13 +44,18 @@ for u, v in G_full.edges():
         # Different layer edge (Inter-layer)
         inter_layer_file.write(f"{u} {v} {layer_u} {layer_v}\n")
 
-# Files close karein
+# Close all files
 for f in layer_files.values():
     f.close()
-    inter_layer_file.close()
 
-print(f"SUCCESS! Data 10 layers mein divide ho gaya hai.")
+inter_layer_file.close()
+
+print(f"SUCCESS! Data has been successfully divided into 10 layers")
 print(f"Check folder: {output_dir}")
+
+
+
+
 
 
 
